@@ -150,7 +150,7 @@ newExpr
 	
 		'new' Ident '(' ')' #NewMethod
 		| 'new' Ident '[' expr ']' #NewArray
-		| 'new' primitiveType '[' expr ']' #newType
+		| 'new' primitiveType '[' expr ']' #newArrayPrim
 	
 ;
 

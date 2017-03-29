@@ -48,9 +48,10 @@ import cd.frontend.parser.JavaliParser.NEGexprContext;
 import cd.frontend.parser.JavaliParser.NOTexprContext;
 import cd.frontend.parser.JavaliParser.NULLlitContext;
 import cd.frontend.parser.JavaliParser.NewArrayContext;
+import cd.frontend.parser.JavaliParser.NewArrayPrimContext;
 import cd.frontend.parser.JavaliParser.NewExprContext;
 import cd.frontend.parser.JavaliParser.NewMethodContext;
-import cd.frontend.parser.JavaliParser.NewTypeContext;
+
 import cd.frontend.parser.JavaliParser.ORexprContext;
 import cd.frontend.parser.JavaliParser.PARexprContext;
 import cd.frontend.parser.JavaliParser.POSexprContext;
@@ -126,10 +127,18 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 
 
 
+	
+
 	@Override
-	public List<Ast> visitNewType(NewTypeContext ctx) {
-		// TODO Auto-generated method stub
-		return super.visitNewType(ctx);
+	public List<Ast> visitNewArrayPrim(NewArrayPrimContext ctx) {
+		ArrayList<Ast> astList = new ArrayList<Ast>();
+		
+		String typeName = visit(ctx.primitiveType()).get(0).toString() + " []";
+		Ast.Expr capacity = (Ast.Expr) visit(ctx.expr()).get(0);
+		
+		astList.add(new Ast.NewArray(typeName, capacity));
+		
+		return astList;
 	}
 
 	@Override
@@ -151,7 +160,7 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		
 		astList.add(new Ast.NewArray(typeName, capacity));
 		
-		return super.visitNewArray(ctx);
+		return astList;
 	}
 
 	// not tested
