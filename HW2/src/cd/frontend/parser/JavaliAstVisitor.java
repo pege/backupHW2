@@ -143,7 +143,8 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		System.out.println("==Formal ParamList");
 		ArrayList<Ast> astList = new ArrayList<Ast>();
 		for (int i = 0; i < ctx.type().size(); i++) {
-			astList.add(new Ast.VarDecl(ctx.type(i).getText(), ctx.Ident(i).getText()));
+			VarDecl visitType = (Ast.VarDecl) visit(ctx.type(i)).get(0);
+			astList.add(new Ast.VarDecl(visitType.type, ctx.Ident(i).getText()));
 		}
 		return astList;
 	}
@@ -681,10 +682,11 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 	// PrimitiveType
 	@Override
 	public List<Ast> visitPrimitiveType(PrimitiveTypeContext ctx) {
-		System.out.println("==PrimitiveType"); //TODO what is the different between PrimType and PrimitiveType?
+		System.out.println("==PrimitiveType");
 		ArrayList<Ast> astList = new ArrayList<>();
 		
 		String type = ctx.getText();
+		
 		
 		//TODO: instead of null?
 		astList.add(new VarDecl(type, null));
