@@ -47,7 +47,11 @@ import cd.frontend.parser.JavaliParser.MethodDeclContext;
 import cd.frontend.parser.JavaliParser.NEGexprContext;
 import cd.frontend.parser.JavaliParser.NOTexprContext;
 import cd.frontend.parser.JavaliParser.NULLlitContext;
+import cd.frontend.parser.JavaliParser.NewArrayContext;
+import cd.frontend.parser.JavaliParser.NewArrayPrimContext;
 import cd.frontend.parser.JavaliParser.NewExprContext;
+import cd.frontend.parser.JavaliParser.NewMethodContext;
+
 import cd.frontend.parser.JavaliParser.ORexprContext;
 import cd.frontend.parser.JavaliParser.PARexprContext;
 import cd.frontend.parser.JavaliParser.POSexprContext;
@@ -121,12 +125,42 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		return astList;
 	}
 
-	// TODO implement
+
+
+	
+
 	@Override
-	public List<Ast> visitNewExpr(NewExprContext ctx) {
-		System.out.println("==New Expr");
+	public List<Ast> visitNewArrayPrim(NewArrayPrimContext ctx) {
+		ArrayList<Ast> astList = new ArrayList<Ast>();
 		
-		return null;
+		String typeName = visit(ctx.primitiveType()).get(0).toString() + " []";
+		Ast.Expr capacity = (Ast.Expr) visit(ctx.expr()).get(0);
+		
+		astList.add(new Ast.NewArray(typeName, capacity));
+		
+		return astList;
+	}
+
+	@Override
+	public List<Ast> visitNewMethod(NewMethodContext ctx) {
+		ArrayList<Ast> astList = new ArrayList<Ast>();
+		
+		String typeName = ctx.Ident().toString();
+		
+		astList.add(new Ast.NewObject(typeName));
+		return astList;
+	}
+
+	@Override
+	public List<Ast> visitNewArray(NewArrayContext ctx) {
+		ArrayList<Ast> astList = new ArrayList<Ast>();
+		
+		String typeName = ctx.Ident().toString() + " []";
+		Ast.Expr capacity = (Ast.Expr) visit(ctx.expr()).get(0);
+		
+		astList.add(new Ast.NewArray(typeName, capacity));
+		
+		return astList;
 	}
 
 	// not tested
@@ -710,7 +744,9 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 	public List<Ast> visitArrayTypeIdent(ArrayTypeIdentContext ctx) {
 		System.out.println("==ArrayTypeIdent");
 		ArrayList<Ast> astList = new ArrayList<>();
-		astList.add(new Ast.VarDecl(null, null));
+		
+		String type = ctx.Ident().toString() + " []";
+		astList.add(new Ast.VarDecl(type, null));
 		return astList;
 	}
 

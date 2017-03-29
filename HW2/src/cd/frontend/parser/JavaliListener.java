@@ -202,15 +202,41 @@ public interface JavaliListener extends ParseTreeListener {
 	 */
 	void exitReturnStmt(JavaliParser.ReturnStmtContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link JavaliParser#newExpr}.
+	 * Enter a parse tree produced by the {@code NewMethod}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
 	 * @param ctx the parse tree
 	 */
-	void enterNewExpr(JavaliParser.NewExprContext ctx);
+	void enterNewMethod(JavaliParser.NewMethodContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link JavaliParser#newExpr}.
+	 * Exit a parse tree produced by the {@code NewMethod}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
 	 * @param ctx the parse tree
 	 */
-	void exitNewExpr(JavaliParser.NewExprContext ctx);
+	void exitNewMethod(JavaliParser.NewMethodContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NewArray}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNewArray(JavaliParser.NewArrayContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NewArray}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNewArray(JavaliParser.NewArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code newArrayPrim}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 */
+	void enterNewArrayPrim(JavaliParser.NewArrayPrimContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code newArrayPrim}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 */
+	void exitNewArrayPrim(JavaliParser.NewArrayPrimContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link JavaliParser#readExpr}.
 	 * @param ctx the parse tree

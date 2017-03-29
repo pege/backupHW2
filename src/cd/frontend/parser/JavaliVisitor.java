@@ -128,11 +128,26 @@ public interface JavaliVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnStmt(JavaliParser.ReturnStmtContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link JavaliParser#newExpr}.
+	 * Visit a parse tree produced by the {@code NewMethod}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNewExpr(JavaliParser.NewExprContext ctx);
+	T visitNewMethod(JavaliParser.NewMethodContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NewArray}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNewArray(JavaliParser.NewArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code newArrayPrim}
+	 * labeled alternative in {@link JavaliParser#newExpr}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNewArrayPrim(JavaliParser.NewArrayPrimContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link JavaliParser#readExpr}.
 	 * @param ctx the parse tree
