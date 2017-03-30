@@ -302,6 +302,10 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		ArrayList<Ast.Expr> args = new ArrayList<Ast.Expr>();
 		
 		Ast.Expr rcvr = new Ast.ThisRef();
+
+		if (ctx.identAccess() != null) {
+			rcvr = (Ast.Expr) visit(ctx.identAccess()).get(0);
+        }
 		
 		if (ctx.actualParamList() != null){
 			for(Ast ast: visit(ctx.actualParamList())){
@@ -338,6 +342,10 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		ArrayList<Ast.Expr> args = new ArrayList<Ast.Expr>();
 		
 		Ast.Expr rcvr = new Ast.ThisRef();
+
+		if (ctx.identAccess() != null) {
+			rcvr = (Ast.Expr) visit(ctx.identAccess()).get(0);
+        }
 		
 		if (ctx.actualParamList() != null){
 			for(Ast ast: visit(ctx.actualParamList())){
@@ -348,7 +356,9 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 		
 		String methodName = ctx.Ident().toString();
 		
-		astList.add(new Ast.MethodCallExpr(rcvr, methodName, args));
+	
+		
+		astList.add(new Ast.MethodCall(new Ast.MethodCallExpr(rcvr, methodName, args)));
 		
 		return astList;
 	}

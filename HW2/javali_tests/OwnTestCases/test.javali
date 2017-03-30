@@ -1,20 +1,20 @@
-//class Acl {
-//	int a;
-//	void method(){
-//	}
-//	int intMethod(){
-//		return a;
-//	} 
-//}
+class Acl {
+	int a;
+	void method(){
+	}
+	int intMethod(){
+		return a;
+	} 
+}
 
 
 class Main {
    void main() {
-//   	int m;
-   	Acl acl;
-//   	acl = new Acl();
+   	int m;
+ 	Acl acl;
+   	acl = new Acl();
 	
 	acl.method();
-//   	m = acl.intMethod();
+   	m = acl.intMethod();
 	}
 }
