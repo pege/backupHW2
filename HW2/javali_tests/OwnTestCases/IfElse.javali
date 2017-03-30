@@ -5,7 +5,7 @@ class Main {
 	a= 3;
 	b = 9;
 	c = 8;
-	d = 8.9;
+	d = 9;
 	
 	c= (int) d;
 	
@@ -21,7 +21,6 @@ class Main {
 		b = b/a;
 	}
 
-	
 	if(b==c ||a<=c ){
 		a = b+c;
 	}else 

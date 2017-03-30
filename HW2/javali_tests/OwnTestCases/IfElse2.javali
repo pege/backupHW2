@@ -1,7 +1,7 @@
 class Main {
     void main() {
         
-        int j;
+        int i;
         if (true) {
             i = 0;
         } else {

@@ -100,8 +100,8 @@ stmtBlock
 
 methodCallStmt
 :
-	Ident '(' ( actualParamList )? ')' 
-	| identAccess '.' Ident '(' ( actualParamList )? ')'
+	Ident '('(actualParamList)? ')' ';'
+	| identAccess '.' Ident '('(actualParamList)?')' ';'
 ;
 
 assignmentStmt

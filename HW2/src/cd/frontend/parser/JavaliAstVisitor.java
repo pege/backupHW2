@@ -718,11 +718,7 @@ public final class JavaliAstVisitor extends JavaliBaseVisitor<List<Ast>> {
 	public List<Ast> visitPrimitiveType(PrimitiveTypeContext ctx) {
 		System.out.println("==PrimitiveType");
 		ArrayList<Ast> astList = new ArrayList<>();
-		
 		String type = ctx.getText();
-		
-		
-		//TODO: instead of null?
 		astList.add(new VarDecl(type, null));
 		
 		return astList;
